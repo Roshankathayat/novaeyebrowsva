@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- FAVICON -->
-  <link rel="icon" href="novaeyebrowsva.logo.png">
+  <link rel="icon" href="logo.png">
 
   <style>
     body {
@@ -16,7 +16,7 @@
       scroll-behavior: smooth;
     }
 
-    /* LOADING */
+    /* LOADER */
     #loader {
       position: fixed;
       width: 100%;
@@ -56,6 +56,10 @@
       font-size: 14px;
     }
 
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     /* HERO */
     .hero {
       height: 100vh;
@@ -65,6 +69,7 @@
       align-items: center;
       background: radial-gradient(circle, #111, #000);
       text-align: center;
+      padding-top: 80px;
     }
 
     .hero img {
@@ -80,6 +85,7 @@
       color: #d4af37;
       text-decoration: none;
       border-radius: 30px;
+      transition: 0.3s;
     }
 
     .btn:hover {
@@ -95,6 +101,7 @@
 
     .gallery img {
       width: 300px;
+      max-width: 90%;
       margin: 10px;
       border-radius: 10px;
     }
@@ -115,7 +122,7 @@
 <canvas id="particles"></canvas>
 
 <nav>
-  <img src="novaeyebrowsva.logo.png">
+  <img src="logo.png" alt="Nova Eyebrows Logo">
   <a href="#">Home</a>
   <a href="#services">Services</a>
   <a href="#gallery">Gallery</a>
@@ -123,7 +130,7 @@
 </nav>
 
 <div class="hero">
-  <img src="novaeyebrowsva.logo.png">
+  <img src="logo.png" alt="Nova Eyebrows Logo">
   <a class="btn" href="https://squareup.com/appointments/book" target="_blank">Book Now</a>
 </div>
 
@@ -143,33 +150,47 @@
 
 <div id="contact" class="section">
   <h2>Follow Us</h2>
-  <a class="btn" href="https://instagram.com/novaeyebrows.va">Instagram</a>
+  <a class="btn" href="https://www.instagram.com/novaeyebrows.va/" target="_blank">
+    Visit Instagram
+  </a>
 </div>
 
 <script>
+  // LOADER
   window.onload = () => {
     setTimeout(() => {
       document.getElementById("loader").style.display = "none";
-    }, 1500);
+    }, 1200);
   };
 
+  // CANVAS PARTICLES
   const canvas = document.getElementById("particles");
   const ctx = canvas.getContext("2d");
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
 
   let particles = [];
 
-  for (let i = 0; i < 60; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 2,
-      dx: Math.random() - 0.5,
-      dy: Math.random() - 0.5
-    });
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        dx: Math.random() - 0.5,
+        dy: Math.random() - 0.5
+      });
+    }
   }
+
+  createParticles();
 
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
