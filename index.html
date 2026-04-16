@@ -4,6 +4,9 @@
   <title>Nova Eyebrows</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- FAVICON -->
+  <link rel="icon" href="novaeyebrowsva.logo.png">
+
   <style>
     body {
       margin: 0;
@@ -13,7 +16,7 @@
       scroll-behavior: smooth;
     }
 
-    /* LOADING SCREEN */
+    /* LOADING */
     #loader {
       position: fixed;
       width: 100%;
@@ -34,16 +37,23 @@
       width: 100%;
       top: 0;
       background: rgba(0,0,0,0.8);
-      padding: 15px;
+      padding: 10px;
       text-align: center;
       backdrop-filter: blur(10px);
       z-index: 1000;
     }
 
+    nav img {
+      height: 50px;
+      display: block;
+      margin: 0 auto 5px;
+    }
+
     nav a {
-      margin: 0 15px;
+      margin: 0 10px;
       color: #d4af37;
       text-decoration: none;
+      font-size: 14px;
     }
 
     /* HERO */
@@ -57,9 +67,10 @@
       text-align: center;
     }
 
-    .hero h1 {
-      font-size: 50px;
-      text-shadow: 0 0 20px #d4af37;
+    .hero img {
+      width: 320px;
+      max-width: 90%;
+      margin-bottom: 20px;
     }
 
     .btn {
@@ -88,7 +99,6 @@
       border-radius: 10px;
     }
 
-    /* PARTICLES */
     canvas {
       position: fixed;
       top: 0;
@@ -105,6 +115,7 @@
 <canvas id="particles"></canvas>
 
 <nav>
+  <img src="novaeyebrowsva.logo.png">
   <a href="#">Home</a>
   <a href="#services">Services</a>
   <a href="#gallery">Gallery</a>
@@ -112,7 +123,7 @@
 </nav>
 
 <div class="hero">
-  <h1>NOVA EYEBROWS</h1>
+  <img src="novaeyebrowsva.logo.png">
   <a class="btn" href="https://squareup.com/appointments/book" target="_blank">Book Now</a>
 </div>
 
@@ -126,7 +137,6 @@
 
 <div id="gallery" class="section gallery">
   <h2>Before & After</h2>
-  <!-- REPLACE THESE WITH YOUR REAL PHOTOS -->
   <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f">
   <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371">
 </div>
@@ -137,14 +147,12 @@
 </div>
 
 <script>
-  // LOADER
   window.onload = () => {
     setTimeout(() => {
       document.getElementById("loader").style.display = "none";
     }, 1500);
   };
 
-  // PARTICLES
   const canvas = document.getElementById("particles");
   const ctx = canvas.getContext("2d");
 
@@ -165,7 +173,6 @@
 
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     ctx.fillStyle = "#d4af37";
 
     particles.forEach(p => {
